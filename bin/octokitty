@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'octokit'
+require 'json'
 
 github = Octokit::Client.new auto_paginate: true, access_token: ENV.fetch('GITHUB_ACCESS_TOKEN')
 command = File.basename($0).gsub('-', '_')
@@ -14,4 +15,4 @@ if arguments.length < required.length
   exit false
 end
 
-puts github.method(command).call(*arguments, options)
+puts JSON.dump github.method(command).call(*arguments, options).map(&:to_h)
