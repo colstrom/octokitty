@@ -14,4 +14,4 @@ if arguments.length < required.length
   exit false
 end
 
-github.method(command).call(*arguments, options)
+puts github.method(command).call(*arguments, options)
