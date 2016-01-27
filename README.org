@@ -10,7 +10,7 @@ OctoKiTTY is a GitHub API Client written in Ruby.
 * Installation
 
 #+BEGIN_SRC shell
-  gem install octokitty
+  $ gem install octokitty
 #+END_SRC
 
 * Usage
@@ -20,16 +20,39 @@ no parameters will give you proper usage for the interface you invoked.
 
 ** Examples
 
-#+BEGIN_SRC shell
-$ create_status
+*** To list all available functions
 
-  usage: create_status <repo> <sha> <state> [options]
+For this example, we'll filter this down to the first 3 functions matching ~list~
+#+BEGIN_SRC shell
+  $ octokitty --list | grep list | head -n 3
+
+  list_statuses
+  list_repositories
+  list_repos
 #+END_SRC
 
-#+BEGIN_SRC shell
-$ pull_requests
+*** To call a function with an argument
 
-  usage: pull_requests <repo> [options]
+If invoked as ~octokitty~, the first argument is treated as the function to call.
+
+#+BEGIN_SRC shell
+  $ octokitty create_status
+
+    usage: create_status <repo> <sha> <state> [options]
+#+END_SRC
+
+*** To call a function implicitly
+
+As a convenience for scripting with OctoKiTTY, invoking it with any other name
+will treat that name as the function to call, similar to how ~busybox~ works.
+You can rename it, or create symbolic links.
+
+#+BEGIN_SRC shell
+  $ ln -s $(which octokitty) /usr/local/bin/pull_requests
+
+  $ pull_requests
+
+    usage: pull_requests <repo> [options]
 #+END_SRC
 
 ** Environment
