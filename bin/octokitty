@@ -5,6 +5,7 @@ require 'json'
 
 github = Octokit::Client.new auto_paginate: true, access_token: ENV.fetch('GITHUB_ACCESS_TOKEN')
 command = File.basename($0).gsub('-', '_')
+command = ARGV.shift.gsub('-', '_') if command == 'octokitty'
 
 required, optional = github.method(command).parameters.partition { |p,_| p == :req }.map { |l| l.flat_map { |p| p.last } }
 arguments = ARGV.shift(required.length)
