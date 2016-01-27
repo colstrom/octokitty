@@ -25,4 +25,4 @@ if arguments.length < required.length
 end
 
 response = github.method(command).call(*arguments, options)
-puts JSON.dump response.map(&:to_h)
+puts JSON.dump(response.class == Sawyer::Resource ? response.to_h : response.map(&:to_h))
