@@ -20,13 +20,14 @@ if command == 'octokitty'
 end
 
 required, optional = github.method(command).parameters.partition { |p,_| p == :req }.map { |l| l.flat_map { |p| p.last } }
-arguments = ARGV.shift(required.length)
-options = ARGV.select { |a| a.start_with? '--' }.map{ |a| a[2..-1].to_sym }.zip(ARGV.reject { |a| a.start_with? '--' }).to_h
 
-if arguments.length < required.length
+if (ARGV.first == '--help') || (ARGV.length < required.length)
   printf "usage: %s %s %s\n", command, required.map { |r| "<#{r}>" }.join(' '), optional.map { |o| "[#{o}]" }.join(' ')
   exit false
 end
+
+arguments = ARGV.shift(required.length)
+options = ARGV.select { |a| a.start_with? '--' }.map{ |a| a[2..-1].to_sym }.zip(ARGV.reject { |a| a.start_with? '--' }).to_h
 
 response = github.method(command).call(*arguments, options)
 puts JSON.dump(response.class == Sawyer::Resource ? response.to_h : response.map(&:to_h))
