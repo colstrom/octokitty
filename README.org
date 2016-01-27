@@ -1,0 +1,45 @@
+#+TITLE: OctoKiTTY
+#+SUBTITLE: Like busybox for the GitHub API
+
+#+LATEX: \pagebreak
+
+* Overview
+
+OctoKiTTY is a GitHub API Client written in Ruby.
+
+* Installation
+
+#+BEGIN_SRC shell
+  gem install octokitty
+#+END_SRC
+
+* Usage
+
+How to use OctoKiTTY depends on the API call you wish to make. Calling it with
+no parameters will give you proper usage for the interface you invoked.
+
+** Examples
+
+#+BEGIN_SRC shell
+$ create_status
+
+  usage: create_status <repo> <sha> <state> [options]
+#+END_SRC
+
+#+BEGIN_SRC shell
+$ pull_requests
+
+  usage: pull_requests <repo> [options]
+#+END_SRC
+
+** Environment
+
+OctoKiTTY expects to find ~GITHUB_ACCESS_TOKEN~ in the environment.
+
+* License
+
+In keeping with the spirit of GitHub, OctoKiTTY is released under the [[https://tldrlegal.com/license/mit-license][MIT
+License]]. See ~LICENSE.txt~ for the full text.
+
+* Contributors
+- [[https://colstrom.github.io/][Chris Olstrom]] | [[mailto:chris@olstrom.com][e-mail]] | [[https://twitter.com/ChrisOlstrom][Twitter]]
