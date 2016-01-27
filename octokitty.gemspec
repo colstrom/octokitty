@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name = 'octokitty'
-  gem.version = '1.0.1'
+  gem.version = '1.1.0'
   gem.licenses    = 'MIT'
   gem.authors     = ['Chris Olstrom']
   gem.email       = 'chris@olstrom.com'
