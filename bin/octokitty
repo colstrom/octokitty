@@ -5,7 +5,15 @@ require 'json'
 
 github = Octokit::Client.new auto_paginate: true, access_token: ENV.fetch('GITHUB_ACCESS_TOKEN')
 command = File.basename($0).gsub('-', '_')
-command = ARGV.shift.gsub('-', '_') if command == 'octokitty'
+
+if command == 'octokitty'
+  if ARGV.empty?
+    puts 'usage: octokitty <function>'
+    exit false
+  else
+    command = ARGV.shift.gsub('-', '_')
+  end
+end
 
 required, optional = github.method(command).parameters.partition { |p,_| p == :req }.map { |l| l.flat_map { |p| p.last } }
 arguments = ARGV.shift(required.length)
