@@ -7,7 +7,7 @@ github = Octokit::Client.new auto_paginate: true, access_token: ENV.fetch('GITHU
 command = File.basename($0).gsub('-', '_')
 
 if command == 'octokitty'
-  if ARGV.empty?
+  if ARGV.empty? || (ARGV.first == '--help')
     puts 'usage: octokitty <function>'
     exit false
   else
