@@ -9,7 +9,7 @@ required, optional = github.method(command).parameters.partition { |p,_| p == :r
 arguments = ARGV.shift(required.length)
 options = ARGV.select { |a| a.start_with? '--' }.map{ |a| a[2..-1].to_sym }.zip(ARGV.reject { |a| a.start_with? '--' }).to_h
 
-if ARGV.length < required.length
+if arguments.length < required.length
   printf "usage: %s %s %s\n", command, required.map { |r| "<#{r}>" }.join(' '), optional.map { |o| "[#{o}]" }.join(' ')
   exit false
 end
