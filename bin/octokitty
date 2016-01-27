@@ -24,4 +24,5 @@ if arguments.length < required.length
   exit false
 end
 
-puts JSON.dump github.method(command).call(*arguments, options).map(&:to_h)
+response = github.method(command).call(*arguments, options)
+puts JSON.dump response.map(&:to_h)
