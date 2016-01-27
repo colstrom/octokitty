@@ -11,6 +11,10 @@ if command == 'octokitty'
     puts 'usage: octokitty <function>'
     exit false
   else
+    if ARGV.first == '--list'
+      puts github.class.ancestors.select { |a| a.to_s.start_with? github.class.to_s }.reject { |a| a == github.class }.flat_map { |a| a.instance_methods }
+      exit true
+    end
     command = ARGV.shift.gsub('-', '_')
   end
 end
