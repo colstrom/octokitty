@@ -1,2 +1,4 @@
 vendor/**
 *.gem
+auto/**
+pkg/**
